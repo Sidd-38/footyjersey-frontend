@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FootyJersey - Premium Jerseys</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div id="app">
+    <!-- LOGIN PAGE -->
+    <div id="login-page" class="flex justify-center items-center h-screen bg-gradient-to-br from-blue-100 to-blue-300">
+      <div class="bg-white p-8 rounded shadow-md w-96">
+        <h1 class="text-2xl font-bold text-center text-blue-600 mb-4">FootyJersey</h1>
+        <form id="login-form" class="space-y-4">
+          <input type="email" id="login-email" placeholder="Email" required class="w-full border px-3 py-2 rounded" />
+          <input type="password" id="login-password" placeholder="Password" required class="w-full border px-3 py-2 rounded" />
+          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Login</button>
+        </form>
+        <p class="mt-4 text-center text-sm text-gray-600">
+          No account? <a href="#" onclick="showPage('register-page')" class="text-blue-600 hover:underline">Register</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- REGISTER PAGE -->
+    <div id="register-page" class="hidden flex justify-center items-center h-screen bg-gradient-to-br from-blue-100 to-blue-300">
+      <div class="bg-white p-8 rounded shadow-md w-96">
+        <h1 class="text-2xl font-bold text-center text-blue-600 mb-4">Create Account</h1>
+        <form id="register-form" class="space-y-4">
+          <input type="text" id="register-name" placeholder="Full Name" required class="w-full border px-3 py-2 rounded" />
+          <input type="email" id="register-email" placeholder="Email" required class="w-full border px-3 py-2 rounded" />
+          <input type="password" id="register-password" placeholder="Password" required class="w-full border px-3 py-2 rounded" />
+          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Register</button>
+        </form>
+        <p class="mt-4 text-center text-sm text-gray-600">
+          Already registered? <a href="#" onclick="showPage('login-page')" class="text-blue-600 hover:underline">Login</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- PRODUCTS PAGE (just header placeholder, real JS will render dynamically) -->
+    <div id="products-page" class="hidden p-6">
+      <header class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Featured Jerseys</h2>
+        <button onclick="showPage('cart-page')" class="text-blue-600 font-semibold text-xl">🛒</button>
+      </header>
+      <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- JS renders product cards here -->
+      </div>
+    </div>
+
+    <!-- CART PAGE (simplified) -->
+    <div id="cart-page" class="hidden p-6">
+      <button onclick="showPage('products-page')" class="text-blue-600 mb-4">&larr; Back to Shop</button>
+      <h2 class="text-2xl font-bold mb-4">Your Cart</h2>
+      <div id="cart-items">
+        <!-- JS renders cart items here -->
+      </div>
+      <button id="checkout-btn" class="mt-4 bg-green-600 text-white px-6 py-2 rounded">Proceed to Checkout</button>
+    </div>
+
+    <!-- CHECKOUT PAGE (minimal layout) -->
+    <div id="checkout-page" class="hidden p-6">
+      <h2 class="text-2xl font-bold mb-4">Checkout</h2>
+      <form id="shipping-form" class="space-y-4">
+        <input type="text" id="first-name" placeholder="First Name" required class="w-full border px-3 py-2 rounded" />
+        <input type="text" id="last-name" placeholder="Last Name" required class="w-full border px-3 py-2 rounded" />
+        <input type="text" id="address" placeholder="Address" required class="w-full border px-3 py-2 rounded" />
+        <input type="text" id="city" placeholder="City" required class="w-full border px-3 py-2 rounded" />
+        <input type="text" id="state" placeholder="State" required class="w-full border px-3 py-2 rounded" />
+        <input type="text" id="zip" placeholder="ZIP Code" required class="w-full border px-3 py-2 rounded" />
+        <input type="tel" id="phone" placeholder="Phone Number" required class="w-full border px-3 py-2 rounded" />
+      </form>
+
+      <h3 class="text-xl font-semibold mt-6 mb-2">Payment</h3>
+      <input type="text" id="card-number" placeholder="Card Number" required class="w-full border px-3 py-2 rounded" />
+      <input type="text" id="card-name" placeholder="Name on Card" required class="w-full border px-3 py-2 rounded" />
+
+      <button id="place-order-btn" class="mt-6 bg-blue-600 text-white px-6 py-2 rounded">Place Order</button>
+    </div>
+
+    <!-- CONFIRMATION PAGE -->
+    <div id="confirmation-page" class="hidden flex flex-col justify-center items-center min-h-screen bg-green-50 text-center">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+          <i class="fas fa-check-circle text-4xl text-green-600 mb-4"></i>
+          <h2 class="text-2xl font-bold mb-2">Order Confirmed!</h2>
+          <p class="text-gray-600">Thank you for shopping with FootyJersey.</p>
+      
+          <!-- ✅ Order Summary Section -->
+          <div id="order-summary" class="mt-6 space-y-2 text-left text-sm border-t pt-4">
+            <!-- Items will be rendered here from JS -->
+          </div>
+      
+          <button onclick="showPage('products-page')" class="mt-6 bg-blue-600 text-white px-6 py-2 rounded">
+            Back to Shop
+          </button>
+        </div>
+      </div>
+      
+
+  <!-- JavaScript Logic -->
+  <script src="js/main.js"></script>
+</body>
+</html>
