@@ -1,6 +1,7 @@
 // main.js - FootyJersey Frontend Logic
 
-const apiBase = "http://localhost:5000/api"; // change this to your deployed backend when live
+const apiBase = "https://footyjersey-api.onrender.com/api";
+ // change this to your deployed backend when live
 
 // Page toggle logic
 function showPage(id) {
